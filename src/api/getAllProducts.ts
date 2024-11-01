@@ -1,6 +1,7 @@
 import { Product } from "../types/types";
 import axios from 'axios'; 
 
+// Inte jättenöjd med detta api.. Saknas bilder på många produkter..
 const API = 'https://api.escuelajs.co/api/v1/products';
 
 // Definera att anropet skall returnera en arrat av Product. 

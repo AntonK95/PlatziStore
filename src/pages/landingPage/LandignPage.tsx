@@ -1,6 +1,7 @@
 import React from 'react'
 import AllProducts from '../../components/AllProducts'
 
+
 function LandignPage() {
   return (
     <div>

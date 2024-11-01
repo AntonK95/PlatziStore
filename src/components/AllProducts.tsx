@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import getAllProducts from '../api/getAllProducts';
 import { Product, Rating, Image, Category } from '../types/types';
 
+
 function AllProducts() {                   // <Products> anger att tillståndet kommer vara en array av Product-objekt
     const [products, setProducts] = useState<Product[]>([]); // Skapa state för produkterna
     const [loading, setLoading] = useState(true);
