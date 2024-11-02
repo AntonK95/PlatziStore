@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true, // Gör det möjligt att använda default importer
     "jsx": "react-jsx", // För att tillåta jsx syntax
     "module": "CommonJS",
     "target": "ES6",
