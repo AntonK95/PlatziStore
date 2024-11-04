@@ -12,38 +12,43 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// src/api/items.ts
-const express_1 = require("express");
+exports.fetchDataByCategory = exports.deleteDataById = exports.fetchDataById = exports.fetchData = void 0;
 const axios_1 = __importDefault(require("axios"));
-const router = (0, express_1.Router)();
-const DATA_URL = 'https://antonk95.github.io/dummy-api/data.json';
-// GET /api/items - Hämta alla objekt
-router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const response = yield axios_1.default.get(DATA_URL);
-        res.json(response.data);
+const API_URL = 'https://antonk95.github.io/dummy-api/data.json';
+// Hämta all data
+const fetchData = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield axios_1.default.get(API_URL);
+    return response.data;
+});
+exports.fetchData = fetchData;
+// Hämta data baserat på ID
+// Mitt api stödjer inte dynamiska id-baserade anrop. 
+// För att kringå det så returnerar vi hela listan och sedan filtrerar/letar efter det id vi sökt på
+const fetchDataById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield axios_1.default.get(API_URL); // Hämta hela listan
+    const item = response.data.find(data => data.id === id); // Filtrera baserat på ID
+    if (!item) {
+        throw new Error(`Item with ID ${id} not found`);
     }
-    catch (error) {
-        console.error('Failed to fetch items:', error);
-        res.status(500).json({ message: 'Error fetching items' });
+    return item;
+});
+exports.fetchDataById = fetchDataById;
+const deleteDataById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield axios_1.default.get(API_URL);
+    const data = response.data;
+    const itemIndex = data.findIndex(data => data.id === id);
+    if (itemIndex === -1) {
+        throw new Error(`Item with ID ${id} not found.. Could not delete`);
     }
-}));
-// GET /api/items/:id - Hämta ett objekt med specifikt ID
-router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const id = parseInt(req.params.id);
-        const response = yield axios_1.default.get(DATA_URL);
-        const item = response.data.find((item) => item.id === id);
-        if (item) {
-            res.json(item);
-        }
-        else {
-            res.status(404).json({ message: 'Item not found' });
-        }
+    else {
+        const [deletedItems] = data.splice(itemIndex, 1); // Ta bort item med id från array
+        console.log(`Deleted item with ID ${id}`, deletedItems);
+        return deletedItems;
     }
-    catch (error) {
-        console.error('Failed to fetch item by ID:', error);
-        res.status(500).json({ message: 'Error fetching item' });
-    }
-}));
-exports.default = router;
+});
+exports.deleteDataById = deleteDataById;
+const fetchDataByCategory = (category) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield axios_1.default.get(API_URL);
+    return response.data.filter(item => item.category.name.toLowerCase() === category.toLowerCase());
+});
+exports.fetchDataByCategory = fetchDataByCategory;
