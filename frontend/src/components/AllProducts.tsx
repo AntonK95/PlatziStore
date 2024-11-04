@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DataItem } from '../types/types';
+import ProductCard from './productCard/ProductCard';
 
 function AllProducts() {
     const [products, setProducts] = useState<DataItem[]>([]);
@@ -29,12 +30,7 @@ function AllProducts() {
             {error && <p>{error}</p>} {/* Visa felmeddelande */}
             <div>
                 {products.map(product => (
-                    <div key={product.id} className='productCard'>
-                        {product.images.length > 0 && <img src={product.images[0]} alt={product.title} />}
-                        <h2>{product.title}</h2>
-                        <p>{product.description}</p>
-                        <p>Pris: {product.price} SEK</p>
-                    </div>
+                    <ProductCard key={product.id} product={product} />
                 ))}
             </div>
         </section>

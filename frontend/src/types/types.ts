@@ -14,3 +14,7 @@ export interface DataItem {
         updatedAt: string;
     };
 }
+
+export interface ProductCardProps {
+    product: DataItem;
+}
