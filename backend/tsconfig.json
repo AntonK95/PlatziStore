@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    // "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true, // Gör det möjligt att använda default importer
-    "jsx": "react-jsx", // För att tillåta jsx syntax
     "module": "CommonJS",
     "target": "ES6",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
   },
-  "include": ["./src"],
+  "include": ["./src/**/*"],
   "exclude": ["./node_modules"], // Varför detta inte fungerar vet jag ej..
 }
