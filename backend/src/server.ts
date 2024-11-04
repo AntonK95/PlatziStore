@@ -2,10 +2,12 @@
 import express, { Request, Response } from 'express';
 import { deleteDataById, fetchData, fetchDataByCategory, fetchDataById } from './services/apiReq';
 import { DataItem } from './interface/interface';
+import cors from 'cors';
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', async (req: Request, res: Response) => {
