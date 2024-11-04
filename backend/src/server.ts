@@ -1,28 +1,16 @@
 // src/server.ts
 import express, { Request, Response } from 'express';
-import axios from 'axios';
-import { fetchData, fetchDataById } from './services/apiReq';
-import { log } from 'console';
+import { deleteDataById, fetchData, fetchDataByCategory, fetchDataById } from './services/apiReq';
+import { DataItem } from './interface/interface';
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
-// Endpoint för att hämta data från API:n
-// app.get('/api/data', async (req, res) => {
-//   try {
-//     const response = await axios.get('https://antonk95.github.io/dummy-api/data.json');
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     res.status(500).send("Error fetching data");
-//   }
-// });
-
 app.get('/', async (req: Request, res: Response) => {
   try {
-    const data = await fetchData();
+    const data: DataItem[] = await fetchData();
     res.json(data);
   } catch (error) {
     console.log('error fetching data', error);
@@ -32,26 +20,40 @@ app.get('/', async (req: Request, res: Response) => {
 
 app.get('/:id', async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const data = await fetchDataById(id);
+    const id: number = parseInt(req.params.id);
+    const data: DataItem = await fetchDataById(id);
     res.json(data);
   } catch (error) {
     console.log('Error getting data by ID:', error);
     res.status(404).send(`Error getting item with ID ${req.params.id}`);
   }
-})
+});
 
-
+// Radera ett item baserat på id
 app.delete('/:id', async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const data = await fetchDataById(id);
-    res.json(data);
+    const id: number = parseInt(req.params.id);
+    const deletedItem: DataItem = await deleteDataById(id);
+    res.json(deletedItem);
   } catch (error) {
     console.log('Error getting data by ID:', error);
     res.status(404).send(`Error getting item with ID ${req.params.id}`);
   }
-})
+});
+
+// Filtrera produkter baserat på category
+app.get('/category/:category', async (req: Request, res: Response) => {
+  try {
+    const { category } = req.params;
+    const data: DataItem[] = await fetchDataByCategory(category);
+    res.json(data);
+  } catch (error) {
+    console.log('Could not filter by category');
+    console.error(`Error fetching data for category ${req.params.category}:`, error);
+    res.status(404).send('Error fetching data for this category');
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
