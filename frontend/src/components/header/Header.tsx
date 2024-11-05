@@ -1,9 +1,18 @@
 
 
-import React from 'react'
+import React,{ useState } from 'react'
 import './header.css'
+import Cart from '../cart/Cart'
 
 function Header() {
+
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+
+  // Toggla state mellan true och false för öppen eller stängd cart
+  const toggleCart = (): void => {
+    setIsCartOpen(!isCartOpen);
+  }
+
   return (
     <header>
         <div>
@@ -11,7 +20,11 @@ function Header() {
                 <p>Store</p>
 
         </div>
-    </header>
+        <nav>
+          <button>Favorite</button>
+          <button onClick={toggleCart}>Cart</button>
+        </nav>
+        <Cart isOpen={isCartOpen} onClose={toggleCart} />    </header>
   )
 }
 

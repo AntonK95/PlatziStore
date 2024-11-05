@@ -1,7 +1,11 @@
 
 header {
-    background-color: whitesmoke;
+    background-color: var(--background-color-dark);
     height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
 
     div {
         display: flex;
@@ -13,12 +17,16 @@ header {
         }
 
         p {
-            color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text-color-white);
             font-size: 28px;
             font-weight: 800;
         }
-
+        
+    }
+    nav{
+        margin-right: 1rem;
+        display: inline-flex;
+        color: var(--text-color-white);
     }
 
     

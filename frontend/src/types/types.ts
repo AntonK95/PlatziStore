@@ -20,3 +20,8 @@ export interface Category {
 export interface ProductCardProps {
     product: DataItem;
 }
+
+export interface CartProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
