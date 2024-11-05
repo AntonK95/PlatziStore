@@ -3,17 +3,43 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 300px;
+    width: 50vw;
     height: 100%;
     background-color: var(--secondary-color);
     box-shadow: -3px 0 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     z-index: 1000;
-    overflow-y: auto;
+    /* overflow-y: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: start;
 
-    buttton {
-        display: block;
-        margin: 1rem auto;
+    ul {
+        list-style: none;
+
+        li {
+            /* max-width: 250px; */
+        }
     }
+    
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    
+    .close__cart--btn {
+        margin: 1rem auto;
+        padding: .5rem;
+        border-radius: 50%;
+        border: none;
+        align-self: end;
+        background-color: var(--accent-color);
+        color: var(--tax-color-white);
+        font-size: 18px;
+    }
+    
+}

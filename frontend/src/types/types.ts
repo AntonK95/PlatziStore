@@ -23,5 +23,10 @@ export interface ProductCardProps {
 
 export interface CartProps {
     isOpen: boolean;
-    onClose: () => void;
+    onClose: () => void; // Stänga cart
+}
+
+export interface CartProductCardProps {
+    product: DataItem;
+    onRemove: (id: number) => void; // Ta bort produkt
 }
