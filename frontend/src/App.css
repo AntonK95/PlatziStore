@@ -5,3 +5,31 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --text-color-black: #050315;
+  --text-color-white: #fbfbfe;
+
+  --background-color-light: #fbfbfe;
+  --background-color-dark: #020024;
+
+  --primary-color: #3a31d8;
+  --secondary-color: #dddbff;
+  --accent-color: #443dff;
+
+}
+
+[data-theme="darkmode"] {
+  --text-color-white: ##fbfbfe;
+  --background-color-dark: #020024;
+
+  --primary-color: #3a31d8;
+  --secondary-color: #dddbff;
+  --accent-color: #443dff;
+
+}
+
+body {
+  background-color: var(--background-color-light);
+  color: var(--text-color-black);
+}
