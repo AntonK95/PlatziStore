@@ -10,7 +10,7 @@
 .cart__product--card {
     /* max-height: 150px; */
     width: minmax(200px, 400px);
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 0;
     margin: 0;
     display: flex;
@@ -45,5 +45,6 @@
         padding: .3rem .5rem;
         color: var(--text-color-white);
         align-self: flex-end;
+        margin: .1rem;
     }
 }

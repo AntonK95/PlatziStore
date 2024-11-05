@@ -28,7 +28,7 @@ function Cart({ isOpen, onClose }) {
     initial={{ x: '100%' }}
     animate={{ x: isOpen ? 0: '100%' }}
     transition={{ duration: 2, type: 'spring', stiffness: 80 }}>
-    <nav>
+    <nav className='cart__nav'>
         <h2>Kundvagn</h2>
         <button className='close__cart--btn' onClick={onClose}>X</button>
     </nav>

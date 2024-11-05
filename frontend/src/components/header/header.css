@@ -27,6 +27,16 @@ header {
         margin-right: 1rem;
         display: inline-flex;
         color: var(--text-color-white);
+        gap: 1rem;
+
+        .btn {
+            background-color: var(--accent-color);
+            padding: .3rem .8rem;
+            border: none;
+            border-radius: 5px;
+            color: var(--text-color-white);
+            font-size: 26px;
+        }
     }
 
     

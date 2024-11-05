@@ -21,8 +21,8 @@ function Header() {
 
         </div>
         <nav>
-          <button>Favorite</button>
-          <button onClick={toggleCart}>Cart</button>
+          <button className='btn'>Favorite</button>
+          <button className='btn' onClick={toggleCart}>Cart</button>
         </nav>
         <Cart isOpen={isCartOpen} onClose={toggleCart} />    </header>
   )
