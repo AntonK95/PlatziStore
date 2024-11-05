@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { DataItem, Category } from '../types/types';
-import ProductCard from './productCard/ProductCard';
+import { DataItem, Category } from '../../types/types';
+import ProductCard from '../productCard/ProductCard';
+import './allproducts.css'
 
 function AllProducts() {
     const [products, setProducts] = useState<DataItem[]>([]);
@@ -53,11 +54,12 @@ function AllProducts() {
     };
 
     return (
-        <section>
+        <section className='show__products'>
       {/* Visa felmeddelande om något gick fel */}
       {error && <p>{error}</p>}
       
       {/* Dropdown-meny för att välja kategori */}
+    <div className='select__category'>
       <select onChange={(e) => handleCategoryChange(e.target.value)}>
         <option value="All">All</option>
         {categories.map(category => (
@@ -66,6 +68,8 @@ function AllProducts() {
           </option>
         ))}
       </select>
+
+      </div>
 
       {/* Visa filtrerade produkter */}
       <div className="products-grid">

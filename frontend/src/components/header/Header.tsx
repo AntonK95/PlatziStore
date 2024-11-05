@@ -13,6 +13,20 @@ function Header() {
     setIsCartOpen(!isCartOpen);
   }
 
+// Välj header-elementet
+const header = document.querySelector("header");
+
+if (header) {
+  // Typbevakning för att säkerställa att 'header' inte är null
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+}
+
   return (
     <header>
         <div>

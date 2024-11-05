@@ -1,5 +1,8 @@
 
 header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     background-color: var(--background-color-dark);
     height: fit-content;
     display: flex;
@@ -40,4 +43,14 @@ header {
     }
 
     
+}
+
+header.scrolled {
+    top: 1rem;
+    background-color: var(--background-color-dark);
+    transition: all ease-in-out 1s;
+    border-radius: 50px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    box-shadow: var(--text-color-white) 0px 0px 4px -2px;
 }

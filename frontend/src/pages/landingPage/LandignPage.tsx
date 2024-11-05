@@ -1,11 +1,15 @@
 import React from 'react'
-import AllProducts from '../../components/AllProducts'
+import AllProducts from '../../components/products/AllProducts'
+import './landingpage.css'
 
 
 function LandignPage() {
   return (
-    <div>
+    <div className='landing__page--wrapper'>
+      <section className='product__container'>
         <AllProducts />
+
+      </section>
     </div>
   )
 }
