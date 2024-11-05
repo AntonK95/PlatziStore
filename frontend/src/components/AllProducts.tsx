@@ -1,39 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import { DataItem } from '../types/types';
+import { DataItem, Category } from '../types/types';
 import ProductCard from './productCard/ProductCard';
 
 function AllProducts() {
     const [products, setProducts] = useState<DataItem[]>([]);
     const [error, setError] = useState<string | null>(null);
 
+    const [filteredProducts, setFilteredProducts] = useState<DataItem[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
+
     const fetchProducts = async () => {
         try {
             const response = await fetch('http://localhost:3000/');
-            if (!response.ok) {
-                throw new Error('Något gick fel vid hämtning av produkter...');
+            if(!response.ok) {
+                throw new Error('något gick fel vid hämtning av produkter...');
             }
             const data: DataItem[] = await response.json();
             setProducts(data);
+            setFilteredProducts(data); // Spara hämtade produkter i state
+            setFilteredProducts(data); // Initialt visas alla produkter
         } catch (error) {
-            setError(error instanceof Error ? error.message : 'Ett okänt fel inträffade.');
             console.log('Could not get products', error);
+            setError('Kunde inte hämta produkter');
         }
     };
 
-    // Hämta data när komponent laddas
+    // Hämta kategorier från produkterna
+    const getCategories = (data: DataItem[]) => {
+        const uniqueCategories = Array.from(new Set(data.map(product => product.category.name)));
+        setCategories(uniqueCategories.map(name => ({ id: 0, name, image : '', creationAt: '', updatedAt: ''})))
+    }
+
     useEffect(() => {
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        if(products.length > 0) {
+            getCategories(products);
+        }
+    }, [products]);
+
+    // Filtrera produkter baserat på vald kategori
+    const handleCategoryChange = (category: string) => {
+        if(category === 'All') {
+            setFilteredProducts(products)
+        } else {
+            const filtered = products.filter(product => product.category.name === category);
+            setFilteredProducts(filtered);
+        }
+    };
+
     return (
         <section>
-            {error && <p>{error}</p>} {/* Visa felmeddelande */}
-            <div>
-                {products.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
-        </section>
+      {/* Visa felmeddelande om något gick fel */}
+      {error && <p>{error}</p>}
+      
+      {/* Dropdown-meny för att välja kategori */}
+      <select onChange={(e) => handleCategoryChange(e.target.value)}>
+        <option value="All">All</option>
+        {categories.map(category => (
+          <option key={category.name} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+
+      {/* Visa filtrerade produkter */}
+      <div className="products-grid">
+        {filteredProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </section>
     );
 }
 
