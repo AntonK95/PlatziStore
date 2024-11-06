@@ -21,6 +21,7 @@ if (header) {
   window.addEventListener("scroll", () => {
     if (window.scrollY > 0) {
       header.classList.add("scrolled");
+      console.log('Scroll event detected')
     } else {
       header.classList.remove("scrolled");
     }

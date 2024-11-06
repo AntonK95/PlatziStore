@@ -7,7 +7,7 @@ import './cart.css'
 import { motion } from 'framer-motion';
 import CartProductCard from '../cartProductCard/CartProductCard';
 
-function Cart({ isOpen, onClose }) {
+function Cart({ isOpen, onClose }: CartProps) {
 
     const [cartItems, setCartItems] = useState<DataItem[]>([]);
 
@@ -17,10 +17,16 @@ function Cart({ isOpen, onClose }) {
     }, []);
 
     // Ta bort produkten från cartItems och uppdatera localStorage
-    const handleRemove = (id: number) => {
+    const handleRemove = (id: number): void => {
         const updatedCart = cartItems.filter(item => item.id !== id);
         setCartItems(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+
+    // Töm kundvagnen
+    const handleClearCart = (): void => {
+      localStorage.setItem('cart', JSON.stringify([]));
+      setCartItems([]);
     }
 
   return (
@@ -39,16 +45,12 @@ function Cart({ isOpen, onClose }) {
       <li>
         {cartItems.map(item => (
             <CartProductCard key={item.id} product={item} onRemove={handleRemove} />
-        //   <div key={item.id} className="cart-item">
-        //     <h3>{item.title}</h3>
-        //     <p>Pris: {item.price} SEK</p>
-        //     {item.images.length > 0 && <img src={item.images[0]} alt={item.title} />}
-        //   </div>
         ))}
       </li>
     )}
 
     </ul>
+    <button className='clearCart' onClick={handleClearCart}>Clear cart</button>
   </motion.div>
   )
 }
