@@ -1,10 +1,10 @@
 
 import React from 'react'
-import { DataItem, CartProductCardProps } from '../../types/types'
+import { CartProductCardProps } from '../../types/types'
 import './cartProductCard.css'
 
 
-function CartProductCard({ product, onRemove}) {
+function CartProductCard({ product, onRemove}: CartProductCardProps) {
 
   return (
     <div className='cart__product--card'>

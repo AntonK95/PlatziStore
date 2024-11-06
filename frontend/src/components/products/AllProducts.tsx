@@ -3,15 +3,15 @@ import { DataItem, Category } from '../../types/types';
 import ProductCard from '../productCard/ProductCard';
 import './allproducts.css'
 
-function AllProducts() {
+function AllProducts(): JSX.Element {
     const [products, setProducts] = useState<DataItem[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     const [filteredProducts, setFilteredProducts] = useState<DataItem[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>('All');
+    // const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-    const fetchProducts = async () => {
+    const fetchProducts = async (): Promise<void> => {
         try {
             const response = await fetch('http://localhost:3000/');
             if(!response.ok) {
@@ -28,27 +28,27 @@ function AllProducts() {
     };
 
     // Hämta kategorier från produkterna
-    const getCategories = (data: DataItem[]) => {
-        const uniqueCategories = Array.from(new Set(data.map(product => product.category.name)));
+    const getCategories = (data: DataItem[]): void => {
+        const uniqueCategories: string[] = Array.from(new Set(data.map(product => product.category.name)));
         setCategories(uniqueCategories.map(name => ({ id: 0, name, image : '', creationAt: '', updatedAt: ''})))
     }
 
-    useEffect(() => {
+    useEffect((): void => {
         fetchProducts();
     }, []);
 
-    useEffect(() => {
+    useEffect((): void => {
         if(products.length > 0) {
             getCategories(products);
         }
     }, [products]);
 
     // Filtrera produkter baserat på vald kategori
-    const handleCategoryChange = (category: string) => {
+    const handleCategoryChange = (category: string): void => {
         if(category === 'All') {
             setFilteredProducts(products)
         } else {
-            const filtered = products.filter(product => product.category.name === category);
+            const filtered: DataItem[] = products.filter(product => product.category.name === category);
             setFilteredProducts(filtered);
         }
     };

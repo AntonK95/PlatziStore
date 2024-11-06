@@ -3,7 +3,7 @@ import AllProducts from '../../components/products/AllProducts'
 import './landingpage.css'
 
 
-function LandignPage() {
+function LandignPage(): JSX.Element {
   return (
     <div className='landing__page--wrapper'>
       <section className='product__container'>

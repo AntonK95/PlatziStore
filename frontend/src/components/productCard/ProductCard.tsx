@@ -2,15 +2,15 @@ import { ProductCardProps } from "../../types/types";
 import './productcard.css'
 import React from 'react'
 
-function ProductCard({ product }) {
+function ProductCard({ product }: ProductCardProps) {
     // Funktion för att lägga till produkter i en kunvagn via localStorage
-    const addToCart = () => { 
+    const addToCart = (): void => { 
         // Hämta nuvarande kundvagn eller initiera en ny tom array
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const cart: ProductCardProps['product'][] = JSON.parse(localStorage.getItem('cart') || '[]');
         cart.push(product)
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        console.log(`Produkt ${product.tile} tillagd i kundvagn`);
+        console.log(`Produkt ${product.title} tillagd i kundvagn`);
     }
 
     return (
