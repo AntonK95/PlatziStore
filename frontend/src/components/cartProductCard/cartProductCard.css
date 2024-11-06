@@ -8,17 +8,13 @@
 
 
 .cart__product--card {
-    /* max-height: 150px; */
     width: minmax(200px, 400px);
     border-radius: 5px;
     padding: 0;
     margin: 0;
+    margin-bottom: .5rem;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    /* display: grid;
-    grid-template-columns: minmax(min-content, 300px) minmax(200px, 1fr) 150px; */
-
     background-color: var(--background-color-light);
 
     img {

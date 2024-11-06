@@ -35,7 +35,7 @@ function Cart({ isOpen, onClose }: CartProps) {
     animate={{ x: isOpen ? 0: '100%' }}
     transition={{ duration: 2, type: 'spring', stiffness: 80 }}>
     <nav className='cart__nav'>
-        <h2>Kundvagn</h2>
+        <h2>Cart</h2>
         <button className='close__cart--btn' onClick={onClose}>X</button>
     </nav>
     <ul>
@@ -50,7 +50,7 @@ function Cart({ isOpen, onClose }: CartProps) {
     )}
 
     </ul>
-    <button className='clearCart' onClick={handleClearCart}>Clear cart</button>
+    <button className='clearCartBtn' onClick={handleClearCart}>Clear cart</button>
   </motion.div>
   )
 }

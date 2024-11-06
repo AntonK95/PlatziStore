@@ -9,19 +9,20 @@
     box-shadow: -3px 0 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
     z-index: 1000;
-    /* overflow-y: auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: start;
-
+    
     h2 {
         color: var(--accent-color);
     }
-
+    
     ul {
         list-style: none;
-
+        overflow-y: auto;
+        min-height: 75dvh;
+        scrollbar-width: none;
     }
     
 }
@@ -42,8 +43,17 @@
         border: none;
         align-self: end;
         background-color: var(--accent-color);
-        color: var(--tax-color-white);
+        color: var(--text-color-white);
         font-size: 18px;
     }
     
+}
+
+.clearCartBtn {
+    padding: 1rem 2rem;
+    background-color: var(--accent-color);
+    color: var(--text-color-white); 
+    border: none;
+    border-radius: 5px;
+    margin: 2rem;
 }
