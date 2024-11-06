@@ -1,6 +1,7 @@
 import { ProductCardProps } from "../../types/types";
 import './productcard.css'
 import React from 'react'
+import { motion } from "framer-motion";
 
 function ProductCard({ product }: ProductCardProps) {
     // Funktion för att lägga till produkter i en kunvagn via localStorage
@@ -20,7 +21,11 @@ function ProductCard({ product }: ProductCardProps) {
                 <h2>{product.title}</h2>
                 <p className="price">Pris: {product.price} SEK</p>
                 <p>{product.description}</p>
-                <button onClick={addToCart}>Add to cart</button>
+                <motion.button onClick={addToCart}
+                transition={{ duration : .3 }}
+                whileHover={{ scale : 1.1 }}
+                whileTap={{ scale : .9 }}
+                style={{ boxShadow : ' black 2px 2px 5px'}}>Add to cart</motion.button>
             </div>
         </div>
     )

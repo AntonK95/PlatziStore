@@ -9,7 +9,7 @@ function AllProducts(): JSX.Element {
 
     const [filteredProducts, setFilteredProducts] = useState<DataItem[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
-    // const [selectedCategory, setSelectedCategory] = useState<string>('All');
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
     const fetchProducts = async (): Promise<void> => {
         try {
@@ -29,9 +29,10 @@ function AllProducts(): JSX.Element {
 
     // Hämta kategorier från produkterna
     const getCategories = (data: DataItem[]): void => {
-        const uniqueCategories: string[] = Array.from(new Set(data.map(product => product.category.name)));
-        setCategories(uniqueCategories.map(name => ({ id: 0, name, image : '', creationAt: '', updatedAt: ''})))
-    }
+      const uniqueCategories: string[] = Array.from(new Set(data.map(product => product.category.name)));
+      // Lägg till "All" kategori längst upp i listan
+      setCategories([{ id: 0, name: 'All', image: '', creationAt: '', updatedAt: '' }, ...uniqueCategories.map((name, index) => ({ id: index + 1, name, image: '', creationAt: '', updatedAt: '' }))]);
+  };
 
     useEffect((): void => {
         fetchProducts();
@@ -45,6 +46,7 @@ function AllProducts(): JSX.Element {
 
     // Filtrera produkter baserat på vald kategori
     const handleCategoryChange = (category: string): void => {
+      setSelectedCategory(category);
         if(category === 'All') {
             setFilteredProducts(products)
         } else {
@@ -58,18 +60,28 @@ function AllProducts(): JSX.Element {
       {/* Visa felmeddelande om något gick fel */}
       {error && <p>{error}</p>}
       
+    {/* <div className='select__category'> */}
       {/* Dropdown-meny för att välja kategori */}
-    <div className='select__category'>
-      <select onChange={(e) => handleCategoryChange(e.target.value)}>
+      {/* <select onChange={(e) => handleCategoryChange(e.target.value)}>
         <option value="All">All</option>
         {categories.map(category => (
           <option key={category.name} value={category.name}>
             {category.name}
           </option>
         ))}
-      </select>
+      </select> 
+    </div>*/}
+    <nav className='category__container'>
 
-      </div>
+      {categories.map(category => (
+        <button key={category.name}
+        className={`category-btn ${selectedCategory === category.name ? 'active' : ''}`}
+        onClick={() => handleCategoryChange(category.name)}>
+          {category.name}
+        </button>
+      ))}
+
+    </nav>
 
       {/* Visa filtrerade produkter */}
       <div className="products-grid">

@@ -19,8 +19,36 @@
         option {
             cursor: pointer;
         }
+    }
+    
+}
+.category__container{
+    margin: 5rem 2rem 5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    justify-content: center;
+    gap: 1rem;
 }
 
+.category-btn {
+    padding: 1rem .5rem;
+    background-color: var(--accent-color);
+    color: var(--text-color-white);
+    border: none;
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.category-btn.active {
+    background-color: var(--secondary-color);
+    color: var(--text-color-black);
+    font-weight: bold;
+    scale: 1.1;
+}
+
+.category-btn:hover {
+    scale: 1.1;
+    /* background-color: #d0d0d0; */
 }
 
 .products-grid {

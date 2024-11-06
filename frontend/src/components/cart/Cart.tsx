@@ -36,7 +36,13 @@ function Cart({ isOpen, onClose }: CartProps) {
     transition={{ duration: 2, type: 'spring', stiffness: 80 }}>
     <nav className='cart__nav'>
         <h2>Cart</h2>
-        <button className='close__cart--btn' onClick={onClose}>X</button>
+        <motion.button 
+        className='close__cart--btn' 
+        onClick={onClose}
+        transition={{ duration : .3 }}
+        whileHover={{ scale : 1.1 }}
+        whileTap={{ scale : .9 }}
+        style={{ boxShadow : ' black 2px 2px 5px'}}>X</motion.button>
     </nav>
     <ul>
     {cartItems.length === 0 ? (
@@ -50,7 +56,12 @@ function Cart({ isOpen, onClose }: CartProps) {
     )}
 
     </ul>
-    <button className='clearCartBtn' onClick={handleClearCart}>Clear cart</button>
+    <motion.button className='clearCartBtn' 
+    onClick={handleClearCart}
+    transition={{ duration : .3 }}
+    whileHover={{ scale : 1.1 }}
+    whileTap={{ scale : .9 }}
+    style={{ boxShadow : ' black 2px 2px 5px'}}>Clear cart</ motion.button>
   </motion.div>
   )
 }

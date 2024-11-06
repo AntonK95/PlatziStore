@@ -12,6 +12,7 @@ footer {
     .inside__footer--wrapper {
         max-width: 1250px;
         columns: 3 300px;
+        margin: 0 auto;
     }
 
     ul{

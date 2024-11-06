@@ -3,6 +3,7 @@
 import React,{ useState, useEffect, useRef } from 'react'
 import './header.css'
 import Cart from '../cart/Cart'
+import { motion } from 'framer-motion';
 
 function Header(): JSX.Element {
 
@@ -57,7 +58,11 @@ useEffect(() => {
         </div>
         <nav>
           {/* <button className='btn'>Favorite</button> */}
-          <button className='btn' onClick={toggleCart}>Cart</button>
+          <motion.button className='btn' 
+          onClick={toggleCart}
+          transition={{ duration : .3 }}
+          whileHover={{ scale : 1.1 }}
+          whileTap={{ scale : .9 }}>Cart</motion.button>
         </nav>
         <Cart isOpen={isCartOpen} onClose={toggleCart} />    
       </header>
