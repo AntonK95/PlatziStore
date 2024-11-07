@@ -12,7 +12,7 @@ function CartProductCard({ product, onRemove}: CartProductCardProps) {
         <div className='cart__card--inner'>
           <p>{product.title}</p>
           <p>Price: {product.price}</p>
-          <button className='remove__btn' onClick={() => onRemove(product.id)}>Remove</button>
+          <button className='remove__btn' onClick={() => onRemove(product.cartID)}>Remove</button>
         </div>
     </div>
   )

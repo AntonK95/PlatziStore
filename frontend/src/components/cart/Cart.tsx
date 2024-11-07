@@ -23,7 +23,7 @@ function Cart({ isOpen, onClose }: CartProps) {
                 ) : (
                     <li>
                         {cartItems.map(item => (
-                            <CartProductCard key={item.id} product={item} onRemove={removeFromCart} />
+                            <CartProductCard key={item.cartID} product={item} onRemove={removeFromCart} />
                         ))}
                     </li>
                 )}

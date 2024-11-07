@@ -7,6 +7,7 @@ export interface DataItem {
     creationAt: string;
     updatedAt: string;
     category: Category;
+    cartID?: string;
 }
 
 export interface Category {
@@ -28,5 +29,12 @@ export interface CartProps {
 
 export interface CartProductCardProps {
     product: DataItem;
-    onRemove: (id: number) => void; // Ta bort produkt
+    onRemove: (id: string) => void; // Ta bort produkt
+}
+
+export interface CartContextType {
+    cartItems: DataItem[];
+    addToCart: (product: DataItem) => void;
+    removeFromCart: (cartID : string) => void;
+    clearCart: () => void;
 }
