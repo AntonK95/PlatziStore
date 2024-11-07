@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS", // modulformat som skall användas för den genererade JavaScript koden.
+    "target": "ES6",
+    "outDir": "./dist",
+    "strict": true, // Strikta typkontroller
+    "esModuleInterop": true // Gör så att vi kan använda CommonJS moduler
+  },
+  "include": ["./src"],
+  "exclude": ["./node_modules, ./dist"] // Varför detta inte fungerar vet jag ej..
+}
